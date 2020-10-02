@@ -40,7 +40,7 @@ function App() {
 
       <section>
 
-        {user ? <ChatRoom firestore={firestore} /> : <SignIn  auth={auth}/>}
+        {user ? <ChatRoom firestore={firestore} auth={auth} /> : <SignIn  auth={auth}/>}
 
       </section>
 
