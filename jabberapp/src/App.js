@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import SignIn from './components/SignIn';
+import SignOut from './components/SignOut';
 
 //import firebase technology
 import firebase from 'firebase/app';
@@ -7,7 +9,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 import {useAuthState} from 'react-firebase-hooks/auth';
-import {useCollectionData} from 'react-firebase-hooks/firestore';
+// import {useCollectionData} from 'react-firebase-hooks/firestore';
 
 
 //setup firebase
@@ -26,12 +28,22 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+const [ user ] = useAuthState(auth);
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        
+        <h1>😆💬🔥</h1>
+        <SignOut auth={auth} />
       </header>
+
+      <section>
+
+        {user ? <ChatRoom firestore={firestore} /> : <SignIn  auth={auth}/>}
+
+      </section>
+
     </div>
   );
 }
